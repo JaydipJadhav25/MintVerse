@@ -1,7 +1,9 @@
 
 function Footer() {
   return (
-    <div>Footer</div>
+    <footer className="glass text-center py-6 mt-20 text-gray-400">
+  <p>© 2026 MintVerse</p>
+</footer>
   )
 }
 

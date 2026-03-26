@@ -21,6 +21,8 @@ body {
   color: var(--text-primary);
   font-family: Inter, sans-serif;
   min-height: 100vh;
+     font-family: "Savate", sans-serif;
+  font-optical-sizing: auto;
 }
 
 /* ✨ Smooth UI */
@@ -53,9 +55,19 @@ body {
 /* 🌈 Gradient Text */
 .gradient-text {
   background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* 📦 Section Spacing */
 .section {
   padding: 4rem 2rem;
+}
+
+
+/* Or apply to specific headings */
+h1, h2 {
+  /* font-family: 'Bebas Neue', sans-serif; */
+   font-family: "Savate", sans-serif;
+  font-optical-sizing: auto;
 }
