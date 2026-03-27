@@ -82,7 +82,6 @@ const MintNFT = () => {
       toast.success("Image And MetaDate Uploaded successfully On IPFS.");
 
       // call to contract
-
       toast.warning("Nft Minting On Blockchain.....");
 
       const { success, tokenId, txHash } = await mintNft(metadataUrl);

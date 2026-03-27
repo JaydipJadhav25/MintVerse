@@ -151,6 +151,21 @@ app.post("/create-nft", upload.single("file"), async (req, res) => {
 });
 
 
+app.get("/explors" , async(req , res)=>{
+  try {
+    const allNfts = await NftModel.find();
+
+    return res.status(200)
+     .json({
+      data : allNfts
+     });
+  } catch (error) {
+    return res.status(500).json({
+      messahe : "fetch All Nfts Error!"
+    })
+  }
+})
+
 
 
 
