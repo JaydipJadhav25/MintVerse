@@ -4,8 +4,25 @@ import axios from "axios";
 import FormData from "form-data";
 import cors from "cors";
 import dotenv from "dotenv";
+import mongoose from "mongoose";
+import { NftModel } from "./model/nft.model.js";
 
 dotenv.config();
+
+
+//create connection of database
+async function conectDB() {
+    try {
+        const connectionInstance = await mongoose.connect("mongodb://127.0.0.1:27017/mintVerse");
+        console.log(`\n MongoDB connected! DB HOST: ${connectionInstance.connection.host}`);
+    } catch (error) {
+        console.log("Database connection error:", error);
+        process.exit(1); // Exit with 1 for a failure/error
+    }
+}
+
+
+
 
 const app = express();
 
@@ -64,7 +81,7 @@ app.post("/create-nft", upload.single("file"), async (req, res) => {
       return res.status(400).json({ error: "No file" });
     }
 
-    // 1️⃣ Upload IMAGE
+    // 1 Upload IMAGE
     const imageData = new FormData();
     imageData.append("file", req.file.buffer, req.file.originalname);
 
@@ -107,9 +124,18 @@ app.post("/create-nft", upload.single("file"), async (req, res) => {
 
     const metadataUrl = `https://lime-solid-cardinal-518.mypinata.cloud/ipfs/${metaRes.data.IpfsHash}`;
 
-     //save in db
 
-    
+     //save in db
+     await NftModel.create({
+      user: req.body.user,
+      name: metadata.name,
+      description: metadata.description,
+      price: metadata.price,
+      collection: metadata.collection,
+      imageUrl : imageUrl,
+      metadataUrl : metadataUrl,
+     });
+
     //  RETURN BOTH
     res
     .status(200)
@@ -124,4 +150,12 @@ app.post("/create-nft", upload.single("file"), async (req, res) => {
   }
 });
 
-app.listen(5000, () => console.log("Server running on port 5000"));
+
+
+
+
+
+conectDB()
+.then(()=>{
+    app.listen(5000, () => console.log("Server running on port 5000"));
+})

@@ -5,9 +5,14 @@ import Footer from "../components/Layout/Footer";
 import Navbar from "../components/Layout/Navbar";
 import axios from "axios";
 import { toast } from "sonner";
+import { useContract } from "../context/useContract";
+import { useNavigate } from "react-router-dom";
 
 const MintNFT = () => {
   const { account, connectWallet } = useWallet();
+  const { mintNft } = useContract();
+
+  const navigate = useNavigate();
 
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string>("");
@@ -55,9 +60,9 @@ const MintNFT = () => {
       formData.append("file", image);
       formData.append("name", form.name);
       formData.append("description", form.description);
-      formData.append("price" , form.price);
-      formData.append("collection" , form.collection);
-
+      formData.append("price", form.price);
+      formData.append("collection", form.collection);
+      formData.append("user", account);
 
       //  Send properly
       const response = await axios.post(
@@ -71,16 +76,24 @@ const MintNFT = () => {
       );
 
       console.log("response:", response.data);
+      const metadataUrl: string = response?.data?.metadataUrl || "";
 
       //1. image uploaded on ipfs server
       toast.success("Image And MetaDate Uploaded successfully On IPFS.");
 
       // call to contract
 
+      toast.warning("Nft Minting On Blockchain.....");
 
-      
-   
-
+      const { success, tokenId, txHash } = await mintNft(metadataUrl);
+      console.log(tokenId);
+      if (success) {
+        toast.success("You Nft Mint SuccessFully Tx Hash:" + txHash);
+        //save indb  and redirect in exploer page
+        navigate("/explore");
+      } else {
+        toast.error(" Nft Mint Error !");
+      }
     } catch (error) {
       console.log("error:", error);
       toast.error("NFT Minting Error!");

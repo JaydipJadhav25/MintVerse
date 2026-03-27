@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MintNFT from "./pages/MintNFT";
 import Index from "./pages/Index";
 import { Toaster } from "sonner";
+import Explore from "./pages/Explore";
 
 const AppRouter = () => {
   return (
@@ -10,6 +11,7 @@ const AppRouter = () => {
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/mintNft" element={<MintNFT />} />
+        <Route path="/explore" element={<Explore/>}/>
       </Routes>
     </>
   );
