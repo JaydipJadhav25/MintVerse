@@ -5,7 +5,7 @@ import { useWallet } from "../context/WalletProvider";
 import { toast } from "sonner";
 import axios from "axios";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 function Explore() {
   const [allNfts, setAllNfts] = useState<any[]>([]);
