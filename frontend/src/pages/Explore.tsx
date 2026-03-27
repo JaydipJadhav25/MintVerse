@@ -19,7 +19,7 @@ function Explore() {
     async function fetchAllNfts() {
       try {
         setLoading(true);
-        const response = await axios("http://localhost:5000/explors");
+        const response = await axios(`${import.meta.env.VITE_API_URL}/explors`);
         setAllNfts(response?.data?.data || []);
       } catch (error) {
         console.log("error : ", error);

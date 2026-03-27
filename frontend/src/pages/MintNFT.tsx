@@ -66,7 +66,7 @@ const MintNFT = () => {
 
       //  Send properly
       const response = await axios.post(
-        "http://localhost:5000/create-nft",
+        `${import.meta.env.VITE_API_URL}/create-nft`,
         formData,
         {
           headers: {

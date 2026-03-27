@@ -13,7 +13,7 @@ dotenv.config();
 //create connection of database
 async function conectDB() {
     try {
-        const connectionInstance = await mongoose.connect("mongodb://127.0.0.1:27017/mintVerse");
+        const connectionInstance = await mongoose.connect(process.env.MONGODBURL);
         console.log(`\n MongoDB connected! DB HOST: ${connectionInstance.connection.host}`);
     } catch (error) {
         console.log("Database connection error:", error);
@@ -172,5 +172,5 @@ app.get("/explors" , async(req , res)=>{
 
 conectDB()
 .then(()=>{
-    app.listen(5000, () => console.log("Server running on port 5000"));
+    app.listen(process.env.PORT, () => console.log("Server running on port 5000"));
 })
