@@ -11,7 +11,7 @@ function Explore() {
   const [allNfts, setAllNfts] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const { account } = useWallet();
 
