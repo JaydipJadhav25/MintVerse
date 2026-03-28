@@ -23,15 +23,15 @@ const Navbar = () => {
       {/* 📌 Menu */}
       <div className="flex gap-8 items-center text-sm font-medium">
 
-        <Link to={"/"} className="nav-link">
+        <Link to={"/v2"} className="nav-link">
           Home
         </Link>
 
-        <Link to={"/explore"} className="nav-link">
+        <Link to="explore" className="nav-link">
           Explore
         </Link>
 
-        <Link to={"/mintNft"} className="nav-link">
+        <Link to="mintNft" className="nav-link">
           Mint NFT
         </Link>
 
