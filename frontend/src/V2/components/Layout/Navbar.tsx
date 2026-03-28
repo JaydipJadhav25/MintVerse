@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useWallet } from "../../context/WalletProvider";
 
+
 const Navbar = () => {
   const { account, connectWallet } = useWallet();
 

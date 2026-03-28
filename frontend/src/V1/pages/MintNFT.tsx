@@ -1,12 +1,12 @@
 import { useState } from "react";
 import type { ChangeEvent } from "react";
-import { useWallet } from "../context/WalletProvider";
-import Footer from "../components/Layout/Footer";
-import Navbar from "../components/Layout/Navbar";
+
 import axios from "axios";
 import { toast } from "sonner";
-import { useContract } from "../context/useContract";
+
 import { useNavigate } from "react-router-dom";
+import { useContract } from "../context/useContract";
+import { useWallet } from "../context/WalletProvider";
 
 const MintNFT = () => {
   const { account, connectWallet } = useWallet();
@@ -123,7 +123,6 @@ const MintNFT = () => {
   //  CONNECTED UI
   return (
     <>
-      <Navbar />
       <div className="px-6 md:px-12 py-12 max-w-6xl mx-auto">
         {/*  TITLE */}
         <h1 className="text-4xl font-bold mb-10 text-center">
@@ -233,7 +232,7 @@ const MintNFT = () => {
           </div>
         </div>
       </div>
-      <Footer />
+    
     </>
   );
 };

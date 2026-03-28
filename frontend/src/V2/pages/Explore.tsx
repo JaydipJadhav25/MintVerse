@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import Footer from "../components/Layout/Footer";
 import Navbar from "../components/Layout/Navbar";
-import { useWallet } from "../context/WalletProvider";
 import { toast } from "sonner";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { useWallet } from "../context/WalletProvider";
 // import { useNavigate } from "react-router-dom";
 
 function Explore() {
