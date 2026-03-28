@@ -1,0 +1,245 @@
+
+/* 🌌 V2 THEME WRAPPER */
+.v2 {
+  /* 🎨 COLORS */
+  --bg-main: #0b0b0f;
+  --bg-secondary: #111827;
+  --card-bg: rgba(17, 24, 39, 0.6);
+  --border-color: rgba(255, 255, 255, 0.08);
+
+  --primary: #f97316;
+  --primary-light: #fb923c;
+  --primary-dark: #ea580c;
+
+  --text-primary: #ffffff;
+  --text-secondary: #9ca3af;
+
+  /* 🌈 BACKGROUND */
+  background: radial-gradient(circle at top, #1a0f05, #0b0b0f);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+/* ✨ Smooth UI */
+/* .v2 * {
+  transition: all 0.25s ease;
+} */
+
+/* 🔮 Glass Card */
+.v2 .glass {
+  background: var(--card-bg);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+}
+
+/* 🟠 Primary Button */
+.v2 .btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-weight: 500;
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.25);
+}
+
+.v2 .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(249, 115, 22, 0.4);
+}
+
+/* 🔥 Outline Button */
+.v2 .btn-outline {
+  border: 1px solid var(--border-color);
+  padding: 10px 18px;
+  border-radius: 12px;
+  color: var(--text-secondary);
+}
+
+.v2 .btn-outline:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* 🌈 Gradient Text */
+.v2 .gradient-text {
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 📦 Section */
+.v2 .section {
+  padding: 5rem 2rem;
+}
+
+/* 🧱 Card Hover */
+.v2 .card-hover:hover {
+  transform: translateY(-5px);
+  border-color: rgba(249, 115, 22, 0.4);
+}
+
+/* 🔘 Small Badge */
+.v2 .badge {
+  background: rgba(249, 115, 22, 0.1);
+  color: var(--primary-light);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+/* 🌟 Glow Effect (used behind elements) */
+.v2 .glow {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: rgba(249, 115, 22, 0.2);
+  filter: blur(120px);
+  z-index: 0;
+}
+
+
+/* ============================= */
+/* 🔥 PREMIUM CARD (UPGRADE) */
+/* ============================= */
+
+.v2 .premium-card {
+  background: linear-gradient(
+    145deg,
+    rgba(30, 20, 10, 0.9),
+    rgba(10, 10, 12, 0.95)
+  );
+  border: 1px solid rgba(249, 115, 22, 0.15);
+  border-radius: 20px;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glow layer */
+.v2 .premium-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top,
+    rgba(249, 115, 22, 0.25),
+    transparent 70%
+  );
+  opacity: 0.6;
+}
+
+/* inner content */
+.v2 .premium-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ============================= */
+/* 🟠 ICON CIRCLE */
+/* ============================= */
+
+.v2 .icon-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 25px rgba(249, 115, 22, 0.5);
+}
+
+/* ============================= */
+/* 📝 LABEL TEXT */
+/* ============================= */
+
+.v2 .label {
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  color: var(--primary-light);
+  text-transform: uppercase;
+}
+
+/* ============================= */
+/* 🎯 HIGHLIGHT TEXT */
+/* ============================= */
+
+.v2 .highlight-text {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* ============================= */
+/* 🌌 NAVBAR (PREMIUM) */
+/* ============================= */
+
+.v2 .navbar {
+  background: rgba(10, 10, 12, 0.4);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+/* nav links */
+.v2 .nav-link {
+  color: var(--text-secondary);
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.v2 .nav-link:hover {
+  color: var(--primary);
+}
+
+/* CTA button */
+.v2 .nav-btn {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  padding: 8px 16px;
+  border-radius: 10px;
+  color: white;
+  font-weight: 500;
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+}
+
+.v2 .nav-btn:hover {
+  box-shadow: 0 0 35px rgba(249, 115, 22, 0.5);
+  transform: translateY(-1px);
+}
+
+/* ============================= */
+/* ✨ EXTRA DEPTH (IMPORTANT) */
+/* ============================= */
+
+/* section spacing refinement */
+.v2 .section {
+  padding: 6rem 2rem;
+}
+
+/* glass improvement */
+.v2 .glass {
+  background: rgba(17, 24, 39, 0.55);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* subtle hover scale */
+.v2 .hover-scale:hover {
+  transform: scale(1.02);
+}
+
+/* ============================= */
+/* 🌟 BACKGROUND GLOW (GLOBAL) */
+/* ============================= */
+
+.v2::after {
+  content: "";
+  position: fixed;
+  top: -100px;
+  right: -100px;
+  width: 400px;
+  height: 400px;
+  background: rgba(249, 115, 22, 0.15);
+  filter: blur(120px);
+  z-index: 0;
+}
+

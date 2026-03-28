@@ -3,12 +3,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster } from "sonner";
 import MintNFT from "./V1/pages/MintNFT";
 import Explore from "./V1/pages/Explore";
-
-
-import IndexV2 from "./V2/pages/IndexV2";
-import "./V1/v1.css";
 import V1Layout from "./V1/pages/V1Layout";
 import HomeV1 from "./V1/components/HomeV1";
+import "./V1/v1.css";
+import V2Layout from "./V2/pages/V2Layout";
+import HomeV2 from "./V2/components/HomeV2";
 
 const AppRouter = () => {
   return (
@@ -27,7 +26,8 @@ const AppRouter = () => {
 
 
         {/* V2 (Nested Routes) */}
-        <Route path="/v2" element={<IndexV2/>}>
+        <Route path="/v2" element={<V2Layout/>}>
+          <Route  index element={<HomeV2/>}/>
         </Route>
       </Routes>
     </>
