@@ -61,6 +61,13 @@ const Navbar = () => {
             Mint NFT  
           </Link>
 
+           <Link
+            to={"/transfer"}
+            className="text-gray-300 hover:text-white transition"
+          >
+            TransferNFT 
+          </Link>
+
 
 
           <Link

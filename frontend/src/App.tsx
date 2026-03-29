@@ -11,6 +11,7 @@ import HomeV2 from "./V2/components/HomeV2";
 import MintNFTV2 from "./V2/pages/MintNFTV2";
 import ExploreV2 from "./V2/pages/ExploreV2";
 import History from "./V1/pages/History";
+import Transfer from "./V1/pages/Transfer";
 
 const AppRouter = () => {
   return (
@@ -26,6 +27,7 @@ const AppRouter = () => {
         <Route path="mintNft" element={<MintNFT />} />
         <Route path="explore" element={<Explore/>}/>
         <Route path="transcation" element={<History/>} />
+        <Route path="transfer" element={<Transfer/>}/>
         </Route>
 
         {/* V2 (Nested Routes) */}

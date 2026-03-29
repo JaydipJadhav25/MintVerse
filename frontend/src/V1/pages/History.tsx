@@ -90,13 +90,15 @@ function History() {
             >
               {/* LEFT */}
               <div className="flex items-center gap-3">
-                <span
-                  className={`px-3 py-1 text-xs rounded-full font-medium ${badge(
+                <a href={`https://sepolia.etherscan.io/tx/${item.transactionHash}`}>
+                   <span
+                  className={`px-3 py-1 text-xs rounded-full font-medium cursor-pointer ${badge(
                     item.actionType
                   )}`}
                 >
                   {item.actionType.toUpperCase()}
                 </span>
+                </a>
 
                 <p className="text-sm text-gray-300">
                   Token #{item.tokenId}
