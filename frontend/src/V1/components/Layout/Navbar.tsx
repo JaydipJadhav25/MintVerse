@@ -58,7 +58,16 @@ const Navbar = () => {
             to={"/mintNft"}
             className="text-gray-300 hover:text-white transition"
           >
-            Mint NFT
+            Mint NFT  
+          </Link>
+
+
+
+          <Link
+            to={"/transcation"}
+            className="text-gray-300 hover:text-white transition"
+          >
+             Transcation
           </Link>
 
           {/* 🔗 Wallet Section */}

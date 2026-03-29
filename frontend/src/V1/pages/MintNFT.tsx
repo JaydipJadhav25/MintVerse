@@ -66,7 +66,7 @@ const MintNFT = () => {
 
       //  Send properly
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/create-nft`,
+        `${import.meta.env.VITE_API_URL}/nft/create`,
         formData,
         {
           headers: {
@@ -82,13 +82,29 @@ const MintNFT = () => {
       toast.success("Image And MetaDate Uploaded successfully On IPFS.");
 
       // call to contract
-      toast.warning("Nft Minting On Blockchain.....");
+      // toast.warning("Nft Minting On Blockchain.....");
 
       const { success, tokenId, txHash } = await mintNft(metadataUrl);
-      console.log(tokenId);
+      console.log("tokenId :" , tokenId);
+      // Convert hex to a readable decimal string
+       const cleanTokenId = BigInt(tokenId).toString(); 
+
       if (success) {
         toast.success("You Nft Mint SuccessFully Tx Hash:" + txHash);
         //save indb  and redirect in exploer page
+
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/nft/tokenid` ,{
+          tokenId : cleanTokenId , metadataUrl : metadataUrl , txHash : txHash
+        });
+
+        if (response.data?.success) {
+         toast.success("Nft ANd TokenId linked Successfully!");
+
+        }else{
+        toast.error("Nft ANd TokenId linked Error!");
+        }
+         
+        //redirect on explore page
         navigate("/explore");
       } else {
         toast.error(" Nft Mint Error !");

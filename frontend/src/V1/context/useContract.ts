@@ -55,9 +55,8 @@ export const useContract = () => {
             };
 
         } catch (error: any) {
-            console.error("Error mintNft service:", error);
 
-              
+            console.error("Error mintNft service:", error);  
 
             return {
                 success: false,

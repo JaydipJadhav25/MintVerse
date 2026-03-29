@@ -67,7 +67,7 @@ const MintNFTV2 = () => {
 
       //  Send properly
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/create-nft`,
+        `${import.meta.env.VITE_API_URL}/nft/create`,
         formData,
         {
           headers: {
