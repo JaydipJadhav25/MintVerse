@@ -65,8 +65,41 @@ export const useContract = () => {
         }
     }, [getContract]);
 
+    //transafer nft => means chnage token ownert
+    const transaferNft = useCallback(async( from :string , to : string ,tokenID : number )=>{
+         try {
+                
+            console.log("data : " , from , to , tokenID);
+            const contract = await getContract(true);
+            // Send transaction =from , to ,tokemid
+            const tx = await contract.safeTransferFrom(from , to , tokenID);
+
+            console.log("Transaction sent:", tx.hash);
+
+            // Wait for confirmation
+            const receipt = await tx.wait();
+
+            console.log("Transaction confirmed:", receipt);
+
+            return {
+                success: true,
+                txHash: tx.hash,
+            };
+
+        } catch (error: any) {
+
+            console.error("Error transaferNft service:", error);  
+
+            return {
+                success: false,
+                error: error?.reason || error?.message || "transaferNft failed"
+            };
+        }
+    },[getContract]);
+
 
     return {
-        mintNft
+        mintNft ,
+        transaferNft
     }
 }

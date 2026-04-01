@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { useWallet } from "../context/WalletProvider";
 import { ethers } from "ethers";
+import { useContract } from "../context/useContract";
 
 function Transfer() {
   const [allNfts, setAllNfts] = useState<any[]>([]);
@@ -12,6 +13,7 @@ function Transfer() {
 
   const { account, connectWallet } = useWallet();
 
+   const {transaferNft} = useContract();
 
   
   //  Fetch NFTs
@@ -51,7 +53,7 @@ function Transfer() {
 
 
 
-  // 🔌 NOT CONNECTED UI
+  //  NOT CONNECTED UI
   if (!account) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[70vh] text-center">
@@ -71,7 +73,7 @@ function Transfer() {
 
 
 
-  // 🚀 Transfer Function
+  //  Transfer Function
   const handleTransfer = async () => {
 
 
@@ -89,24 +91,24 @@ function Transfer() {
     try {
       setLoading(true);
        
-      // const tx = await contract?.safeTransferFrom(
-      //   account,
-      //   receiver,
-      //   selectedNft.tokenId
-      // );
-
-      setTimeout(()=>{
-
-         console.log(account , receiver , selectedNft.tokenId);
-
-      },4000);
-
       toast.loading("Transferring NFT...");
-
-      // await tx.wait();
-
+      console.log("selecteed nft :" , selectedNft.tokenId);
+      const { success  , txHash } = await transaferNft(account , receiver ,Number(selectedNft.tokenId));
+      console.log(success , txHash  );
+      //if failed
+      if (!success) {
+        toast.error("Error transaferNft service");
+        return;
+      }
+      
+      //api call fro history store
+      const responce = await axios.post(`${import.meta.env.VITE_API_URL}/nft/transfer-nft` ,{
+        from : account, to : receiver, tokenId : selectedNft.tokenId , txHash : txHash 
+      });
+         
+      console.log("response : " , responce.data);
       toast.dismiss();
-      toast.success("NFT Transferred Successfully 🚀");
+      toast.success("NFT Transferred Successfully ");
 
       // reset
       setSelectedNft(null);
@@ -115,7 +117,9 @@ function Transfer() {
     } catch (error: any) {
       console.log(error);
       toast.error("Transfer failed!");
+
     } finally {
+        toast.dismiss();
       setLoading(false);
     }
   };
