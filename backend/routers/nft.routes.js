@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {setTokenIdBasedOnmetadataUrl } from "../controller/nft.controller.js";
+import {setTokenIdBasedOnmetadataUrl, transaferNft } from "../controller/nft.controller.js";
 import multer from "multer";
 import axios from "axios";
 import FormData from "form-data";
@@ -125,6 +125,6 @@ router.get("/history" , async(req , res)=>{
   }
 })
 
-
+router.post("/transfer-nft" , transaferNft);
 
 export default router;
