@@ -1,8 +1,13 @@
 import FeatureCard from "../components/FeatureCard";
+import MintVerseChatbot from "./agent/MintVerseChatbot";
 
 const HomeV2 = () => {
   return (
     <div className="px-6 md:px-12 relative">
+     
+     {/* AI agent */}
+     <MintVerseChatbot/>
+
       {/* 🔥 HERO */}
       <section className="section max-w-6xl mx-auto text-center">
         {/* Badge */}
