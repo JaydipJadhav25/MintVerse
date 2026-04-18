@@ -1,3 +1,5 @@
 pinata_api_key=
 pinata_secret_api_key=
 JWT=
+GROQ_API_KEY=
+TAVILY_API_KEY=

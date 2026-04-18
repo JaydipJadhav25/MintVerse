@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import  version1Router from "./routers/version1.routes.js"; 
 import  version2Router from "./routers/version2.routes.js"; 
 import  nftRouter from "./routers/nft.routes.js"; 
+import { aiAgent } from "./services/aiAgent.service.js";
 
 dotenv.config();
 
@@ -35,6 +36,22 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/v1" , version1Router);
 app.use("/v2" , version2Router);
 app.use("/nft" , nftRouter);
+
+
+
+app.post("/ai" , async(req , res)=>{
+    const { message } = req.body;
+    try {
+        const response = await aiAgent(message , "100");
+        return res.status(200).json({
+            message: response
+        })
+    } catch (error) {
+        return res.json({
+            message : "error"
+        })
+    }
+})
 
 
 
