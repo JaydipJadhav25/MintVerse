@@ -1,6 +1,15 @@
 import { useState } from "react";
 import { Send, Bot, User, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
+
+//create uqnice threadId
+// const threadId = Date.now().toString(36) + Math.random().toString(36);
+// console.log("threadId : " , threadId);
+
+const id = uuidv4();
+console.log("id :", id);
 
 export default function MintVerseChatbot() {
   const [open, setOpen] = useState(false);
@@ -10,26 +19,43 @@ export default function MintVerseChatbot() {
       text: "🚀 Welcome to MintVerse AI. Ask anything about NFTs.",
     },
   ]);
+
   const [input, setInput] = useState("");
 
-  const sendMessage = () => {
+  const sendMessage = async () => {
     if (!input.trim()) return;
 
+    // history message push in messgaes  and push input push
     const newMessages = [
       ...messages,
       { role: "user", text: input },
-      { role: "ai", text: "Typing..." },
+      { role: "ai", text: "Thinking..." },
     ];
 
     setMessages(newMessages);
     setInput("");
 
-    setTimeout(() => {
-      setMessages((prev) => [
+    //make Ai Agent call and remove loading message
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}/ai`, {
+      message: input,
+      userId: id
+    });
+
+     const agentResponse = response.data.message;
+
+     setMessages((prev) => [
         ...prev.slice(0, -1),
-        { role: "ai", text: "✨ Smart NFT response from AI" },
+        { role: "ai", text: agentResponse },
       ]);
-    }, 1200);
+
+
+    // setTimeout(() => {
+    //   setMessages((prev) => [
+    //     ...prev.slice(0, -1),
+    //     { role: "ai", text: "✨ Smart NFT response from AI" },
+    //   ]);
+    // }, 1200);
+
   };
 
   return (
