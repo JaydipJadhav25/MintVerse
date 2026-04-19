@@ -39,10 +39,12 @@ app.use("/nft" , nftRouter);
 
 
 
-app.post("/ai" , async(req , res)=>{
-    const { message } = req.body;
+app.post("/agent" , async(req , res)=>{
+    const { message , userId } = req.body;
+
     try {
-        const response = await aiAgent(message , "100");
+        const response = await aiAgent(message ,userId );
+        
         return res.status(200).json({
             message: response
         })

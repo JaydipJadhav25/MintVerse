@@ -36,7 +36,7 @@ export default function MintVerseChatbot() {
     setInput("");
 
     //make Ai Agent call and remove loading message
-    const response = await axios.post(`${import.meta.env.VITE_API_URL}/ai`, {
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}/agent`, {
       message: input,
       userId: id
     });

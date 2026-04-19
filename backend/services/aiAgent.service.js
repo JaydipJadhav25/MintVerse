@@ -10,6 +10,7 @@ const userMessageCache= new NodeCache({stdTTL : 60 * 60 * 24});
 
 
 async function aiAgent(query , threadId) {
+
   let baseMessage = [
     {
       role: "system",
@@ -116,7 +117,7 @@ You are helping users successfully use MintVerse.
   //if base message will use so user start conversion just
   const messages = userMessageCache.get(threadId) ?? baseMessage; 
 
-  console.log("user messgaes : " , userMessageCache.get(threadId))
+  // console.log("user messgaes : " , userMessageCache.get(threadId))
 
 
   //push user quey :
@@ -125,8 +126,19 @@ You are helping users successfully use MintVerse.
     content: query,
   });
 
+
+  //define limits
+  const Max_RETIVEL = 5;
+  let count = 0;
+
+
   try {
     while (true) {
+      //check limits e
+      if(count >  Max_RETIVEL){
+        return "I could not find the result, please try again!"
+      }
+      count++;
       const competion = await qroqClient.chat.completions.create({
         model: "llama-3.3-70b-versatile",
         temperature: 0.3,
@@ -168,10 +180,9 @@ You are helping users successfully use MintVerse.
         userMessageCache.set(threadId , messages);
 
         // console.log("cache : " , userMessageCache);
-
-
         const result = competion.choices[0].message.content;
         return result;
+
       }
 
       //tool calling perform
@@ -193,6 +204,7 @@ You are helping users successfully use MintVerse.
 
       //if tool call get result - model get proprly result so mode will not calltoo and return ans
     }
+
   } catch (error) {
     console.log("ERROR :", error);
   }
