@@ -31,6 +31,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
+app.get("/name/:name" , (req , res)=>{
+    const name = req.params.name
+    return res.send(`hi , ${name}`);
+})
+
 
 
 app.use("/v1" , version1Router);
