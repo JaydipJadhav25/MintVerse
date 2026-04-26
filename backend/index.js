@@ -32,8 +32,10 @@ app.use(express.urlencoded({ extended: true }));
 
 
 app.get("/name/:name" , (req , res)=>{
+
     const name = req.params.name
-    return res.send(`hi , ${name}`);
+    return res.send(`Welcome , ${name}`);
+
 })
 
 
