@@ -36,10 +36,12 @@ export default function MintVerseChatbot() {
     setInput("");
 
     //make Ai Agent call and remove loading message
-    const response = await axios.post(`${import.meta.env.VITE_API_URL}/agent`, {
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}/nft/agent`, {
       message: input,
       userId: id
     });
+
+    console.log("response from chatbot : " , response.data);
 
      const agentResponse = response.data.message;
 

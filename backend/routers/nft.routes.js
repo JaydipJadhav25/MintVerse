@@ -5,6 +5,7 @@ import axios from "axios";
 import FormData from "form-data";
 import { NftModel } from "../model/nft.model.js";
 import { History } from "../model/history.model.js";
+import { aiAgent } from "../services/aiAgent.service.js";
 
 
 const upload = multer();
@@ -123,6 +124,24 @@ router.get("/history" , async(req , res)=>{
       messahe : "fetch All Nfts History Error!"
     })
   }
+});
+
+
+
+
+router.post("/agent" , async(req , res)=>{
+    const { message , userId } = req.body;
+
+    try {
+        const response = await aiAgent(message ,userId );
+        return res.status(200).json({
+            message: response
+        })
+    } catch (error) {
+        return res.json({
+            message : "error"
+        })
+    }
 })
 
 router.post("/transfer-nft" , transaferNft);
